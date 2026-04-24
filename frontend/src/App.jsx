@@ -11,8 +11,10 @@ function AppContent() {
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
 
+  const canSubmit = code.trim().length > 0;
+
   const handleFormat = async () => {
-    if (!code.trim()) return;
+    if (!canSubmit) return;
     setLoading(true);
     setError(null);
     try {
@@ -79,7 +81,7 @@ function AppContent() {
           <div className="flex justify-center">
             <button
               onClick={handleFormat}
-              disabled={loading || !code.trim()}
+              disabled={loading || !canSubmit}
               className="px-6 py-2.5 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {loading ? t.formatting : t.formatButton}
