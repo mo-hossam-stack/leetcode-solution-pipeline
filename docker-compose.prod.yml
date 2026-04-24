@@ -11,6 +11,12 @@ services:
       - backend/.env
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     restart: unless-stopped
 
   frontend:
@@ -19,6 +25,11 @@ services:
       dockerfile: frontend/Dockerfile
     ports:
       - "80:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
     depends_on:
       - backend
     restart: unless-stopped
@@ -26,10 +37,15 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - "443:443"
+      - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - backend
       - frontend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
     restart: unless-stopped

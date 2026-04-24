@@ -5,7 +5,7 @@ COPY frontend/package*.json ./
 RUN npm install
 COPY frontend/ ./
 
-COPY frontend/.env.example .env
+COPY frontend/.env .env
 
 RUN npm run build
 
