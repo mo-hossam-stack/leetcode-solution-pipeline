@@ -1,8 +1,38 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import logging
 
 load_dotenv()
+
+# Configure logging
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+    "loggers": {
+        "formatter": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -74,6 +104,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 GROQ_MODEL = os.getenv("GROQ_MODEL", "")
 
+if not GROQ_API_KEY:
+    raise ValueError("GROQ_API_KEY environment variable is not set!")
+
+if not GROQ_MODEL:
+    GROQ_MODEL = "llama-3.3-70b-versatile"
+
 REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_CLASSES": [
         "rest_framework.throttling.AnonRateThrottle",
@@ -83,6 +119,4 @@ REST_FRAMEWORK = {
     },
 }
 
-CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS" , "").split(
-    ","
-)
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "").split(",")
