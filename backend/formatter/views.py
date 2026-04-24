@@ -1,4 +1,5 @@
 import json
+import logging
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -6,6 +7,8 @@ from rest_framework.throttling import AnonRateThrottle
 
 from .serializers import FormatRequestSerializer, FormatResponseSerializer
 from .groq_service import GroqService
+
+logger = logging.getLogger(__name__)
 
 
 class FormatView(APIView):
@@ -22,6 +25,7 @@ class FormatView(APIView):
             groq_service = GroqService()
             result = groq_service.format_code(code)
         except Exception as e:
+            logger.error(f"Format error: {type(e).__name__}: {e}")
             return Response(
                 {"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
