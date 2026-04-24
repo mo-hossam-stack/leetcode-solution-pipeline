@@ -2,14 +2,17 @@ from django.http import JsonResponse
 from django.views import View
 import os
 
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip('"')
+GROQ_MODEL = os.getenv("GROQ_MODEL", "").strip('"') or "llama-3.3-70b-versatile"
+
 
 class HealthCheckView(View):
     def get(self, request):
         issues = []
 
-        if not os.getenv("GROQ_API_KEY"):
+        if not GROQ_API_KEY:
             issues.append("GROQ_API_KEY not set")
-        if not os.getenv("SECRET_KEY"):
+        if not os.getenv("SECRET_KEY", "").strip('"'):
             issues.append("SECRET_KEY not set")
 
         allowed_hosts = os.getenv("ALLOWED_HOSTS", "")

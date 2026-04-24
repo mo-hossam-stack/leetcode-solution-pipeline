@@ -101,14 +101,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-GROQ_MODEL = os.getenv("GROQ_MODEL", "")
-
-if not GROQ_API_KEY:
-    raise ValueError("GROQ_API_KEY environment variable is not set!")
-
-if not GROQ_MODEL:
-    GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip('"')
+GROQ_MODEL = os.getenv("GROQ_MODEL", "").strip('"') or "llama-3.3-70b-versatile"
 
 REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_CLASSES": [
