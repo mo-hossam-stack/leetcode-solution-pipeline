@@ -36,9 +36,11 @@ LOGGING = {
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-this-in-production")
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-this-in-production").strip(
+    '"'
+)
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").strip('"').split(",")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -113,4 +115,4 @@ REST_FRAMEWORK = {
     },
 }
 
-CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "").split(",")
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "").strip('"').split(",")

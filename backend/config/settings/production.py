@@ -9,7 +9,7 @@ DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 
 # ALLOWED_HOSTS from environment (required for production)
 if os.getenv("ALLOWED_HOSTS"):
-    ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
+    ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").strip('"').split(",")
 else:
     ALLOWED_HOSTS = []
 
@@ -47,7 +47,7 @@ else:
     CSRF_COOKIE_SECURE = False
 
 # CORS configuration for production
-cors_origins = os.getenv("CORS_ALLOWED_ORIGINS", "")
+cors_origins = os.getenv("CORS_ALLOWED_ORIGINS", "").strip('"')
 if cors_origins:
     CORS_ALLOWED_ORIGINS = cors_origins.split(",")
 else:
