@@ -1,0 +1,15 @@
+export default {
+  title: 'منسق حلولك',
+  subtitle: 'منظم الحلول بالذكاء الاصطناعي',
+  inputPlaceholder: 'الحل الخاص بك',
+  formatButton: 'تنسيق',
+  formatting: 'جاري التنسيق...',
+  resultTitle: 'الكود المنسق',
+  copyFilename: 'نسخ',
+  copied: 'تم النسخ!',
+  download: 'تحميل',
+  folders: 'المجلدات',
+  error: 'خطأ',
+  rateLimit: 'تم تجاوز الحد. يرجى الانتظار قبل المحاولة مرة أخرى.',
+  tryAgain: 'حاول مرة أخرى',
+};

@@ -1,0 +1,15 @@
+export default {
+  title: 'LeetCode Formatter',
+  subtitle: 'AI-powered solution organizer',
+  inputPlaceholder: 'Paste your solution here...',
+  formatButton: 'Format',
+  formatting: 'Formatting...',
+  resultTitle: 'Formatted Code',
+  copyFilename: 'Copy',
+  copied: 'Copied!',
+  download: 'Download',
+  folders: 'Folders',
+  error: 'Error',
+  rateLimit: 'Rate limit exceeded. Please wait before trying again.',
+  tryAgain: 'Try Again',
+};
