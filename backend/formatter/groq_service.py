@@ -9,7 +9,11 @@ logger = logging.getLogger(__name__)
 class GroqService:
     def __init__(self):
         self.model = settings.GROQ_MODEL
-        self.client = Groq(api_key=settings.GROQ_API_KEY)
+        self.api_key = settings.GROQ_API_KEY
+        self.client = Groq(api_key=self.api_key)
+        logger.info(
+            f"GroqService init: model={self.model}, key_len={len(self.api_key)}"
+        )
 
     def format_code(self, code: str) -> dict:
         from formatter.prompts import FORMATTER_SYSTEM_PROMPT
