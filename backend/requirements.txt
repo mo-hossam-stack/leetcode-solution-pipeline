@@ -4,3 +4,4 @@ django-cors-headers>=4.3,<5.0
 groq>=1.0,<2.0
 python-dotenv>=1.0,<2.0
 gunicorn>=21.0,<22.0
+redis>=5.0,<6.0
