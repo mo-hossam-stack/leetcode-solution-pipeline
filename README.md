@@ -2,7 +2,7 @@
 
 > Paste your accepted LeetCode solution. Get a clean, structured file with AI-inferred metadata -- ready to organize, download, and archive.
 
-**[Live Demo](https://leetcode-solution-pipeline.netlify.app/)** | **[Report Bug](https://github.com/mo-hossam-stack/leetcode-solution-pipeline/issues)** | **[Request Feature](https://github.com/mo-hossam-stack/leetcode-solution-pipeline/issues)**
+**[Live Demo](https://leetcode-solution-pipeline.vercel.app/)**
 
 ---
 
